@@ -1,38 +1,79 @@
 #include <iostream>
-#include <bitset>
-using namespace std;
-int main()
+int factorial(int num, int rez)
 {
-    cout << "Zadanie 1\n\nLagutin S. A. 221-331" << endl;
-
-    cout << "\nZadanie 2\nmin int = " << INT_MIN << "\t\t\tmax int = " << INT_MAX << "\t\t\tbyte size int = " << sizeof(int) << endl;
-    cout << "min unsigned int = 0\t\t\tmax unsigned int = " << UINT_MAX << "\t\tbyte size unsigned int = " << sizeof(unsigned int) << endl;
-    cout << "min short = " << SHRT_MIN << "\t\t\tmax short = " << SHRT_MAX << "\t\t\tbyte size short = " << sizeof(short) << endl;
-    cout << "min unsigned short = 0\t\t\tmax unsigned short = " << USHRT_MAX << "\t\tbyte size unsigned short = " << sizeof(unsigned short) << endl;
-    cout << "min long = " << LONG_MIN << "\t\t\tmax long = " << LONG_MAX << "\t\t\tbyte size long = " << sizeof(long) << endl;
-    cout << "min long long = " << LLONG_MIN << "\tmax long long = " << LLONG_MAX << "\tbyte size long long = " << sizeof(long long) << endl;
-    cout << "min double = " << DBL_MIN << "\t\tmax double = " << DBL_MAX << "\t\tbyte size double = " << sizeof(double) << endl;
-    cout << "min char = " << CHAR_MIN << "\t\t\t\tmax char = " << CHAR_MAX <<  "\t\t\t\tbyte size char = " << sizeof(char) << endl;
-    cout << "min bool = " << "false" << "\t\t\tmax bool = " << "true" << "\t\t\t\tbyte size bool = " << sizeof(bool) << endl;
+    if (num != 0) 
+    {
+        rez *= num;
+        num--;
+        factorial(num, rez);
+    }
+    else {
+        return rez;
+    }
+}
+void task_1() 
+    {
+    std::cout << "1\n\n";
 
     int num;
-    cout << "\nZadanie 3\n\nVvedite chislo: ";
-    cin >> num;
-    cout << "Bin: 0b" << std::bitset<8 * sizeof(num)>(num) << endl;
-    cout << "Hex: 0x" << std::hex << num << endl;
-    cout << "Bool: " << bool(num) << endl;
-    cout << "Double: " << double(num) << endl;
-    cout << "Char: " << char(num) << endl;
-
-    int a, b;
-    cout << "\nZadanie 4\n\nVvedite chisla: ";
-    cin >> a >> b;
-    cout << a << "*x=" << b << endl;
-    cout << "x=" << b << '/' << a << endl;
-    cout << "x=" << double(b) / a << endl;
-
-    int x1, x2;
-    cout << "\nZadanie 5\n\nVvedite koordinaty otrezka ";
-    cin >> x1 >> x2;
-    cout << "Seredina otrezka: " << double(x1 + x2) / 2 << endl;
+    std::cout << "Vvedite chislo: ";
+    std::cin >> num;
+    for (int i = 0; i <= num; i++)
+    {
+        for (int k = 0; k <= i; k++)
+        {
+            std::cout << k << ' ';
+        }
+        std::cout << '\n';
+    }
+    std::cout << '\n';
+}
+void task_2() {
+    std::cout << "2\n";
+    int n, k;
+    std::cout << "\nVvedite n and k, n>k: ";
+    std::cin >> n >> k;
+    if (k <= n) {
+        std::cout << "\nRezultat: " << float(factorial(n, 1)) / (factorial(n - k, 1) * factorial(k, 1)) << "\n\n";
+    }
+    else {
+        std::cout << "\nError, vy vveli K>N\n\n";
+    }
+}
+void task_3() {
+    std::cout << "3\n";
+    std::cout << "\nDlya zabershenia vvedite 0\n\n" << "Vvedite chisla: ";
+    int summ = 0, num, koll = 0;
+    std::cin >> num;
+    while (num != 0) {
+        koll++;
+        summ += num;
+        std::cin >> num;
+    }
+    std::cout << "\nRezultat: " << double(summ) / koll << "\n\n";
+}
+int main() {
+    int num;
+    bool run = true;
+    while (run)
+    {
+        std::cout << "Vvedite nomer zadaniya 1-3, 4 - exit: ";
+        std::cin >> num;
+        std::cout << '\n';
+        switch (num)
+        {
+        case 1:
+            task_1();
+            break;
+        case 2:
+            task_2();
+            break;
+        case 3:
+            task_3();
+            break;
+        case 4:
+            run = false;
+            break;
+        }
+    }
 }
